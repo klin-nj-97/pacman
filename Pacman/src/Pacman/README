@@ -1,0 +1,60 @@
+README PACMAN
+
+HANDIN: (on time)
+
+DESIGN CHOICES:
+
+This Pacman has 12 classes.
+
+App is in charge of running the application.
+
+BoardCoordinate is an abstract representation of a coordinate on the board so as to
+conveniently through exceptions during construction of Ghost's BFS method.
+
+Collidable is an interface to be implemented by Dots, Energizers, and Ghosts.
+
+Constants contains constant values to clean up code throughout other classes.
+
+Direction is an enum to represent turns by Pacman and Ghosts.
+
+Dot represents a dot to be eaten by Pacman and increases the point counter and
+moves the player towards winning.
+
+Energizer represents an energizer to be eaten and sends Ghosts into frightened mode.
+
+Game is the animation pane in charge of seeing Pacman and Ghosts move and handle the
+logic behind their movements. Logic of the Ghost pen is contained here as well. 
+The Timelines for movement are instantiated here as is the KeyHandler for moving Pacman. 
+Until reaching a wall, the left arrow key moves Pacman left, the right arrow key right, the 
+up arrow key up, and the down arrow key down. A 2D Array has been chosen to represent 
+the board since the number of elements within it are immutable. A LinkedList has 
+been chosen to represent the Ghost pen to make use of its queue nature.
+
+Ghost represents Ghosts to move around the board either chasing Pacman and scattering
+or frightened and moving randomly. A LinkedList has been chosen to store neighbors
+due to its variability as a queue. A 2D Array has been chosen to store direction enums
+so as to conveniently be mapped onto the board's 2D Array of SmartSquares. To accomplish
+frightened Ghosts turning randomly at every intersection, a random corner is assigned
+as the BFS's target at every timestep for frightened Ghosts.
+
+Pachim represents Pacman to move around the board eating dots, energizers, and Ghosts.
+
+PaneOrganizer is the top-level object that contains the multiple panes of the 
+project and their children. Labels reflecting lives, points, and the status of
+the game and the quit button are contained here. Although a sidebar class has been recommended, 
+reaching a functioning game with this class saw difficulty and instead has been elided.
+Although Game could contain the label components, and arguably do so more 
+economically without association and inter-class communication, 
+organizationally it makes more sense to be included in PaneOrganizer. 
+Game is insofar as responsible for the animation pane. PaneOrganizer organizes 
+the different panes, including the game pane and menu pane, which contains the label. 
+BorderPane was chosen as the root node since it can set different nodes to different 
+positions. VBox was chosen as the type pane for the menu pane for its vertical alignment.
+
+SmartSquare is the wrapper class that represents one square on the board of the game.
+An ArrayList has been chosen as the data structure to hold elements in each game
+due to its variable size.
+
+KNOWN BUGS: None
+
+EXTRA-CREDIT: Pacman moves faster than Ghosts
